@@ -58,4 +58,16 @@ function returnSumOfCalories() {
     return sumOfCalories;
 }
 
+function returnTotalTopThreeCaloricSums() {
+    var sumOfCalories = returnSumOfCalories(),
+        ascSortedCaloricSums = _.sortBy(sumOfCalories),
+        sliceStart = (ascSortedCaloricSums.length) - 3,
+        sliceEnd = ascSortedCaloricSums.length,
+        topThreeSums = ascSortedCaloricSums.slice(sliceStart, sliceEnd)
+        totalTopThreeSums = _.sum(topThreeSums);
+
+    return totalTopThreeSums;
+}
+
 console.log('The max number of calories is: ' + _.max(returnSumOfCalories()));
+console.log('The sum of the top three caloric sums is: ' + returnTotalTopThreeCaloricSums());
