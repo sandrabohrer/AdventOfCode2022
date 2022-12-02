@@ -49,41 +49,6 @@ function returnConvertedStrategyGuide() {
     return convertedStrategies;
 }
 
-/**function returnOutcome() {
-    // Rock defeats Scissors, Scissors defeats Paper, and Paper defeats Rock.
-    // If both players choose the same shape, the round instead ends in a draw.
-
-    var convertedStrategyGuide = returnConvertedStrategyGuide(),
-        outcome = '';
-
-    _.forEach(convertedStrategyGuide, function(eachStrategy) {
-        // eachStrategy[0] = opponent
-        // eachStrategy[1] = you
-
-        if (eachStrategy[0] === eachStrategy[1]) {
-            outcome = 'draw';
-        } else if (eachStrategy[0] === 'Rock' && eachStrategy[1] === 'Paper') {
-            outcome = 'you';
-        } else if (eachStrategy[0] === 'Rock' && eachStrategy[1] === 'Scissors') {
-            outcome = 'opponent';
-        } else if (eachStrategy[0] === 'Paper' && eachStrategy[1] === 'Scissors') {
-            outcome = 'you';
-        } else if (eachStrategy[0] === 'Paper' && eachStrategy[1] === 'Rock') {
-            outcome = 'opponent';
-        } else if (eachStrategy[0] === 'Scissors' && eachStrategy[1] === 'Rock') {
-            outcome = 'you';
-        } else if (eachStrategy[0] === 'Scissors' && eachStrategy[1] === 'Paper') {
-            outcome = 'opponent';
-        } else {
-            outcome = '';
-        }
-
-        eachStrategy.push(outcome);
-    });
-
-    return convertedStrategyGuide;
-}**/
-
 function returnYourFinalScore() {
     var strategyGuide = returnConvertedStrategyGuide(),
         opponentScore = 0,
