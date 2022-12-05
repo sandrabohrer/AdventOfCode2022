@@ -13,7 +13,7 @@ function returnAllRucksacks() {
     }
 }
 
-function returnRucksackCompartments() {
+function returnRucksackCompartmentsPart1() {
     var rucksacks = returnAllRucksacks(),
         compartment1,
         compartment2,
@@ -30,8 +30,8 @@ function returnRucksackCompartments() {
     return rucksackCompartments;
 }
 
-function returnCommonItemTypes() {
-    var rucksackCompartments = returnRucksackCompartments(),
+function returnCommonItemTypesPart1() {
+    var rucksackCompartments = returnRucksackCompartmentsPart1(),
         commonItemTypes = [],
         numberOfMatches = 0;
 
@@ -53,9 +53,8 @@ function returnCommonItemTypes() {
     return commonItemTypes;
 }
 
-function returnSumOfItems() {
-    var commonItemTypes = returnCommonItemTypes(),
-        itemNumericalValues = [],
+function returnSumOfItems(commonItemTypes) {
+    var itemNumericalValues = [],
         value = 0;
 
     _.forEach(commonItemTypes, function(item) {
@@ -229,4 +228,42 @@ function returnSumOfItems() {
     return _.sum(itemNumericalValues);
 }
 
-console.log('The sum of the priorities of the item types is: ' + returnSumOfItems());
+function returnRucksackCompartmentsPart2() {
+    var rucksacks = returnAllRucksacks(),
+        elfGroups = []
+        groupSize = 3;
+
+    elfGroups = rucksacks.map( function(e,i){ 
+        return i % groupSize === 0 ? rucksacks.slice(i,i+groupSize) : null; 
+   }).filter(function(e){ return e; });
+    
+    return elfGroups;
+}
+
+function returnCommonItemTypesPart2() {
+    var elfGroups = returnRucksackCompartmentsPart2(),
+        commonItemTypes = [],
+        numberOfMatches = 0;
+
+    _.forEach(elfGroups, function(group) {
+        numberOfMatches = 0;
+
+        _.forEach(group[0], function(group1) {
+            _.forEach(group1, function(item1) {
+                _.forEach(group[1], function(item2) {
+                    _.forEach(group[2], function(item3) {
+                        if (item1 === item2 && item1 === item3 && item2 === item3 && numberOfMatches === 0) {
+                            numberOfMatches += 1;
+                            commonItemTypes.push(item1);
+                        }
+                    });
+                });
+            });
+        });
+    });
+
+    return commonItemTypes;
+}
+
+console.log('Part 1 - The sum of the priorities of the item types is: ' + returnSumOfItems(returnCommonItemTypesPart1()));
+console.log('Part 2 - The sum of the priorities of the item types is: ' + returnSumOfItems(returnCommonItemTypesPart2()));
